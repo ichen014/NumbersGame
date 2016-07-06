@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<script>
+			
+			var intro = "I am thinking of a number between 0 and 9999.\n\nCan you guess the number?";
+			
+			
+			//start game
+			do_game();
+			
+			function do_game() 
+			{
+				count = 0
+				var isCorrect = false;
+				target_number = Math.floor(Math.random()*10000)
+				
+				//show answer
+				alert(target_number);
+				
+				while (!isCorrect)
+				{
+					guess = prompt(intro);
+					count++;
+					if (check_guess()) 
+					{
+						isCorrect = true;
+					}
+				}
+			}
+			
+			function check_guess()
+			{
+				if (guess < 0 || guess > 9999 || isNaN(guess))
+				{
+					alert("Sorry, please enter a number within 0000-9999.\n\nPlease try again.");
+					return false;
+				}
+				else if(!guess)
+				{
+					alert("Sorry to see you go...\n\nThe answer was: " + target_number);
+					return true;
+				}
+				else if (guess > target_number)
+				{
+					alert("Nice try, but not quite!\n\nPick a lower number!");
+					return false;
+				}
+				else if (guess < target_number)
+				{
+					alert("Close, but not yet.\n\nPick a higher number!");
+					return false;
+				}
+				else
+				{
+					//correct
+					var congrats = "Congratulations! You have guessed the number!\n It took you " + count + " guesses to finish the game!\n";
+					document.body.style.backgroundColor = "green";
+					alert(congrats);
+					return true;
+				}
+			}
+			
+		</script>
+	</body>
+</html>
